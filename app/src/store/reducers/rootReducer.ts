@@ -5,3 +5,5 @@ import {movieReducer} from './movieReducers/movieReducer'
 export const rootReducer = combineReducers({
     movies: movieReducer
 })
+
+export type RootState = ReturnType<typeof rootReducer>
