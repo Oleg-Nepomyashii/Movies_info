@@ -1,0 +1,28 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+*,::after,::before {
+    box-sizing: border-box;
+    margin: 0;
+    background-color: $main_backgroun;
+    @include mainFont;
+    color: $main_text_color;
+  }
+
+  .container {
+      min-height: 100vh;
+      max-width: 1320px;
+      margin: auto;
+      background-color: aqua;
+      padding: 10px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+  }
+
+  .main {
+      &_container {
+            display: grid;
+            grid-template-columns: 250px auto;
+            background-color: aqua;
+      }
+  }
