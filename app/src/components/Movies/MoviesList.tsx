@@ -1,18 +1,25 @@
 import { useEffect } from "react";
 import { usedTypedSelectror } from "../../store/hooks/usedTypesSelectror";
 import { useActions } from "../../store/hooks/useAction";
+import { useParams } from "react-router";
+
+interface typeMovie {
+    movieType: string
+}
 
 export const MovieList = (props: any) => {
-    console.log(props.type)
-
+    
     const movies = usedTypedSelectror((state) => state.movies.movies)
     const movieActions = useActions()
 
+    const {movieType} = useParams<typeMovie>()
+    console.log(movieType)
+
 
     useEffect(() => {
-        movieActions.fetchMovies(props.type)
+        movieActions.fetchMovies(movieType)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[props.type])
+    },[movieType])
 
     if(movies.length === 0 ) {
         return (

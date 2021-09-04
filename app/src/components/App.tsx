@@ -1,4 +1,4 @@
-import { BrowserRouter , Route } from 'react-router-dom';
+import { BrowserRouter , Route, Redirect } from 'react-router-dom';
 import { Header } from './Header/Header';
 import { MovieList } from './Movies/MoviesList';
 import {Navigation} from './Navigation/Navigation'
@@ -11,12 +11,13 @@ export const App: React.FC = () => {
         <Header />
         <main className='main_container'>
           <Navigation />
-            <Route path='/' exact>
-              <MovieList type='popular' />
+            <Route path='/'>
+              <Redirect to='/popular' />
             </Route>
-            <Route path='/top_rated'>
-              <MovieList type='top_rated' />
+            <Route path='/:movieType'>
+              <MovieList />
             </Route>
+            
         </main>
       </div>
     </BrowserRouter>
