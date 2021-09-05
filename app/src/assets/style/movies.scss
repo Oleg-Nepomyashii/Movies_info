@@ -1,0 +1,14 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+.empty_movies {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-title {
+        font-size: 45px;
+        font-weight: 700;
+    }
+}
+

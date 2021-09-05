@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
-import { useParams } from 'react-router';
-
-interface typeMovie {
-    movieType: string
-}
+import { useHistory } from 'react-router';
 
 export const Navigation: React.FC = () => {
-
     const nav = [
         {name: 'Popular' , value: 'popular'},
         {name: 'Top Rated' , value: 'top_rated'},
         {name: 'Now Playing' , value: 'now_playing'},
         {name: 'Upcoming' , value: 'upcoming'},
     ]
-    const {movieType} = useParams<typeMovie>()
-    const [typeMovies , setTypeMovies] = useState<string>(movieType ? movieType : nav[0].value)
+    const movieType = useHistory()
+    const [typeMovies , setTypeMovies] = useState<string>(
+        movieType?.location?.pathname 
+            ? movieType.location.pathname.slice(1) 
+            : nav[0].value
+    )
 
     const f = (newMovieType: string) => {
        setTypeMovies(newMovieType)

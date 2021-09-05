@@ -2,28 +2,33 @@ import { useEffect } from "react";
 import { usedTypedSelectror } from "../../store/hooks/usedTypesSelectror";
 import { useActions } from "../../store/hooks/useAction";
 import { useParams } from "react-router";
+import { Loader } from "../Loader/Loader";
+import { MovieListCard } from "./MovieListCard";
 
 interface typeMovie {
     movieType: string
 }
 
-export const MovieList = (props: any) => {
-    
+export const MovieList = () => {
     const movies = usedTypedSelectror((state) => state.movies.movies)
+    const isLoading = usedTypedSelectror((state) => state.movies.loading)
     const movieActions = useActions()
-
     const {movieType} = useParams<typeMovie>()
-    console.log(movieType)
-
 
     useEffect(() => {
         movieActions.fetchMovies(movieType)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[movieType])
 
+    if(isLoading) {
+        return <Loader />
+    }
+
     if(movies.length === 0 ) {
         return (
-            <h1>No movies</h1>
+            <div className='empty_movies'>
+                <h1 className='empty_movies-title'>No movies</h1>
+            </div>
         )
     }
     return (
@@ -32,11 +37,8 @@ export const MovieList = (props: any) => {
             flexWrap: 'wrap'
         }}>
             {
-                movies.map(m => (
-                    <div key={m.title} style={{maxWidth: '250px', marginRight: '20px'}}>
-                        <img style={{width: '250px' , height: '400px' , marginTop: 20, marginRight: 20}} alt={m.title} src={'https://image.tmdb.org/t/p/original' + m.poster_path} />
-                        <h3>{m.title}({new Date(m.release_date).getFullYear()})</h3>
-                    </div>
+                movies.map(movie => (
+                    <MovieListCard {...movie} key={movie.id}/>
                 ))
             }
         </div>

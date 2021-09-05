@@ -1,36 +1,12 @@
-export interface moviesStateReducer {
-    movies: any[],
-    loading: boolean,
-    error: null | string,
-}
-
-export enum moviesActionTypes {
-    FETCH_MOVIES = 'FETCH_MOVIES',
-    FETCH_MOVIES_SUCCESS = 'FETCH_MOVIES_SUCCESS',
-    FETCH_MOVIES_ERROR = 'FETCH_MOVIES_ERROR',
-}
-
-interface FetchMovies {
-    type: moviesActionTypes.FETCH_MOVIES,
-    payload?: any[]
-}
-
-interface FetchMoviesSuccess {
-    type: moviesActionTypes.FETCH_MOVIES_SUCCESS,
-    payload: any[]
-}
-
-interface FetchMoviesError {
-    type: moviesActionTypes.FETCH_MOVIES_ERROR,
-    payload: string
-}
-
-export type moviesAction = FetchMovies | FetchMoviesSuccess | FetchMoviesError
+import {moviesStateReducer , moviesAction , moviesActionTypes} from './movieInterfaces';
 
 const initialState: moviesStateReducer = {
     movies: [],
     loading: false,
     error: null,
+    page: 1,
+    perPage: 20,
+    totalPages: 0
 }
 
 export const movieReducer = (state = initialState , action: moviesAction):  moviesStateReducer => {
@@ -54,6 +30,12 @@ export const movieReducer = (state = initialState , action: moviesAction):  movi
                loading: false,
                movies: action.payload
            }
+        }
+        case moviesActionTypes.SET_TOTAL_PAGES: {
+            return {
+                ...state,
+                totalPages: action.payload
+            }
         }
         default: return state
  }
