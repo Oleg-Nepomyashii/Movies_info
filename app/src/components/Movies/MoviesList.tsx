@@ -32,10 +32,7 @@ export const MovieList = () => {
         )
     }
     return (
-        <div style={{
-            display: 'flex',
-            flexWrap: 'wrap'
-        }}>
+        <div className='movies__container'>
             {
                 movies.map(movie => (
                     <MovieListCard {...movie} key={movie.id}/>

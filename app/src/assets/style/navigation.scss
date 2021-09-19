@@ -2,7 +2,6 @@
 @import './mixins.scss';
 
 .navigation {
-    background-color: $default_black;
     display: flex;
     flex-direction: column;
     padding: 1rem;
@@ -11,7 +10,6 @@
         display: flex;
         flex-direction: column;
         flex-grow: 1;
-        background-color: $default_black;
         & > a {
             @include mainLink;
             font-size: 1.3rem;
@@ -22,7 +20,6 @@
         }
 
         &-title {
-            background-color: $default_black;
             text-decoration: underline;
             font-size: 2rem;
             text-align: center;

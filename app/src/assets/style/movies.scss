@@ -12,3 +12,61 @@
     }
 }
 
+.movies {
+    &__container {
+        padding: 1rem 0;
+        display: grid;
+        grid-template-columns: 25% 25% 25% 25%;
+        grid-template-rows: auto;
+        background-color: $grey_background;
+
+        @media screen and (max-width: $md_point) {
+            grid-template-columns: 33% 33% 33%;
+        }
+
+        @media screen and (max-width: $sm_point) {
+            grid-template-columns: 50% 50%;
+        }
+
+        @media screen and (max-width: $xsm_point) {
+            grid-template-columns: 100%;
+        }
+    }
+}
+
+.movie {
+    &__card {
+        width: 210px;
+        margin: 0 auto 1rem;
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.8);
+        background-color: $main_background;
+        &-image {
+            height: 315px;
+            width: 210px;
+
+            @media screen and (max-width: $sm_point) {
+                width: 100%;
+                height: 450px;
+            }
+        }
+
+        &-title {
+            text-overflow: ellipsis;
+            text-align: center;
+            padding: 0.5rem  0;
+        }
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.1 ,1.1);
+
+            @media screen and (max-width: $sm_point) {
+                transform: scale(1 ,1);
+            }
+        }
+
+        @media screen and (max-width: $sm_point) {
+            width: 90%;
+        }
+    }
+}
+
