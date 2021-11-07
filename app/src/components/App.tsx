@@ -18,7 +18,9 @@ export const App: React.FC = () => {
             <Route path='/movies/:movieType'>
               <MovieList/>
             </Route>
-            <Route path='/info/:movieId' component={MovieInfo} />
+            <Route path='/info/:movieId' >
+              <MovieInfo />
+            </Route>
           </Switch>
         </main>
       </div>

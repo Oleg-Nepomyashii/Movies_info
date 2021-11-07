@@ -15,9 +15,9 @@ export const MovieList = () => {
     const movieActions = useActions()
     const {movieType} = useParams<typeMovie>()
 
+
     useEffect(() => {
-        movieActions.fetchMovies(movieType)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        movieActions.fetchMovies(movieType) 
     },[movieType])
 
     if(isLoading) {
