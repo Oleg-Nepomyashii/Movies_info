@@ -30,7 +30,7 @@ export const Navigation: React.FC = () => {
                     nav.map((n) => (
                         <Link 
                             key={n.value}
-                            to={n.value}
+                            to={'/movies/' + n.value}
                             className={typeMovies === n.value ? 'active' : ''}
                             onClick={() => f(n.value)} 
                         >
